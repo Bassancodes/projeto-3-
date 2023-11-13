@@ -252,7 +252,7 @@ void filtrarPorPrioridade() {
 }
 void filtrarPorEstado() {
     char estado[100];
-    printf("Informe o estado desejado: ");
+    printf("Informe o estado desejado:");
     scanf(" %[^\n]", estado);
 
     printf("Tarefas com estado %s:\n", estado);
