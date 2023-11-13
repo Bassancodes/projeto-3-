@@ -48,7 +48,7 @@ void menu(){
                 alterarTarefa();
                 break;
           case 5:
-                
+                exportar();
                 break;
           case 6:
             
@@ -68,8 +68,8 @@ void printMenu() {
     printf("1. Cadastrar Tarefa\n");
     printf("2. Deletar Tarefa\n");
     printf("3. Listar Tarefas\n");
-    printf("4. Altarar Tarefa");
-    printf("5. Exportar");
+    printf("4. Altarar Tarefa\n");
+    printf("5. Exportar\n");
     printf("6. Sair\n");
     printf("Escolha uma opção: ");
 }
@@ -298,29 +298,8 @@ void filtrarPorPrioridadeECategoria() {
         }
     }
 }
-void exportarPorPrioridade() {
-    int prioridade;
-    printf("Informe a prioridade desejada (0-10): ");
-    scanf("%d", &prioridade);
 
-    char arquivo[100];
-    sprintf(arquivo, "tarefas_prioridade_%d.txt", prioridade);
 
-    FILE *file = fopen(arquivo, "w");
-    if (file == NULL) {
-        perror("Erro ao criar o arquivo");
-        return;
-    }
-
-    for (int i = 0; i < lt.qtd; i++) {
-        if (lt.tarefas[i].prioridade == prioridade) {
-            fprintf(file, "%d, %s, %s, %s\n", lt.tarefas[i].prioridade, lt.tarefas[i].categoria, lt.tarefas[i].estado, lt.tarefas[i].descricao);
-        }
-    }
-
-    fclose(file);
-    printf("Tarefas exportadas com sucesso para %s!\n", arquivo);
-}
 void exportarPorCategoria() {
     char categoria[100];
     printf("Informe a categoria desejada: ");
@@ -375,10 +354,22 @@ void exportarPorPrioridadeECategoria() {
     printf("Tarefas exportadas com sucesso para %s!\n", arquivo);
 }
 
-int executar(){
-  printf(" ");
-}
+void printexportar(){
 
+  printf("7. Por Categoria \n");
+  printf("8. Por Prioridade\n");
+  printf("9. Por Categoria e Prioridade\n");
+  printf("Qual opcao voce deseja exportar");
+}
+void exportar(){
+  int opcaoo;
+  printexportar();
+  scanf("%d", &opcaoo);
+  if (opcaoo == 7) { exportarPorCategoria();}
+
+  if (opcaoo == 8) {exportarPorPrioridade();}
+  if (opcaoo == 9) {exportarPorPrioridadeECategoria();}       
+}
 
 
 
